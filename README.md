@@ -23,6 +23,7 @@ or explicit `movableContentOf()`) do **not** reproduce the issue.
 
 ## Conditions
 
+- Only on **Android 10** (API 29) — does **not** reproduce on newer Android versions
 - Only in **release** builds with R8 minification enabled (`isMinifyEnabled = true`)
 - Requires **scrolling** on Screen B
 - Does **not** occur in debug builds
@@ -58,12 +59,13 @@ adb install -r app/build/outputs/apk/release/app-release.apk
 
 ## Verification Matrix
 
-| Compose BOM           | Build type | Scrolled? | Result       |
-|-----------------------|------------|-----------|--------------|
-| `2026.05.00` (1.11.1) | Release    | Yes       | ✅ Correct    |
-| `2026.05.01` (1.11.2) | Release    | Yes       | ❌ **Broken** |
-| `2026.05.01` (1.11.2) | Debug      | Yes       | ✅ Correct    |
-| `2026.05.01` (1.11.2) | Release    | No        | ✅ Correct    |
+| Compose BOM           | Build type | Android     | Scrolled? | Result       |
+|-----------------------|------------|-------------|-----------|--------------|
+| `2026.05.00` (1.11.1) | Release    | 10 (API 29) | Yes       | ✅ Correct    |
+| `2026.05.01` (1.11.2) | Release    | 10 (API 29) | Yes       | ❌ **Broken** |
+| `2026.05.01` (1.11.2) | Debug      | 10 (API 29) | Yes       | ✅ Correct    |
+| `2026.05.01` (1.11.2) | Release    | 10 (API 29) | No        | ✅ Correct    |
+| `2026.05.01` (1.11.2) | Release    | 11+         | Yes       | ✅ Correct    |
 
 ## Project Structure
 
