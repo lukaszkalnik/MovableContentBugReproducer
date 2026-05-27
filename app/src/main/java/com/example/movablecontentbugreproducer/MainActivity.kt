@@ -2,6 +2,7 @@ package com.example.movablecontentbugreproducer
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
@@ -106,6 +107,7 @@ fun ScreenA(onNavigateToB: () -> Unit) {
 
 @Composable
 fun ScreenB(onClose: () -> Unit) {
+    BackHandler(onBack = onClose)
     val markdownContent = buildString {
         repeat(50) { index ->
             appendLine("**Item $index** — Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
